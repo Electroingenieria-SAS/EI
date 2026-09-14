@@ -5,7 +5,7 @@ const C=window.LuminaCore,W=window.LuminaWorld,Art=window.LuminaArt;
 const ui=new window.LuminaUI();
 const DIR={down:{x:0,y:1},up:{x:0,y:-1},left:{x:-1,y:0},right:{x:1,y:0}};
 class ValleyScene extends Phaser.Scene {
- constructor(){super('Valley');this.started=false;this.state=C.initialState();this.face='down';this.attackAt=-1000;this.rollAt=-1000;this.hurtAt=-1000;this.touch={};this.actionQueue=[];this.frameClock=0;this.lastMap=0;this.lastSave=0;}
+ constructor(){super('Valley');this.started=false;this.state=C.initialState();this.face='down';this.attackAt=-1000;this.rollAt=-1000;this.hurtAt=-1000;this.touch={};this.actionQueue=[];this.frameClock=0;this.lastMap=0;this.lastSave=0;this.lastHudUpdate=0;}
  create(){
   Art.install(this);ui.scene=this;
   this.keys=this.input.keyboard.addKeys({up:'UP',down:'DOWN',left:'LEFT',right:'RIGHT',w:'W',a:'A',s:'S',d:'D',run:'SHIFT',interact:'E',attack:'J',roll:'SPACE'});
@@ -246,7 +246,7 @@ class ValleyScene extends Phaser.Scene {
   }else {this.hero.setAngle(0);document.getElementById('hint').classList.add('hidden');}
   this.hero.setDepth(this.hero.y);this.heroShadow.setPosition(this.hero.x,this.hero.y-1).setDepth(this.hero.y-.1);
   this.companion.setDepth(this.companion.y);this.companionShadow.setPosition(this.companion.x,this.companion.y-1).setDepth(this.companion.y-.1);
-  if(this.started){ui.update();if(time-this.lastMap>180){ui.drawMap(document.getElementById('minimap'));this.lastMap=time;}}
+  if(this.started){if(time-this.lastHudUpdate>100){ui.update();this.lastHudUpdate=time;}if(time-this.lastMap>180){ui.drawMap(document.getElementById('minimap'));this.lastMap=time;}}
  }
  updateNPCs(dt,frame){
   for(const n of this.npcs){
