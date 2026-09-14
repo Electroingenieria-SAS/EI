@@ -1,0 +1,19 @@
+{
+  "name": "lumina-guardianes-del-valle",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Aventura original en Phaser 3: exploración, criaturas y santuario.",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node --test tests/core.test.cjs",
+    "test:browser": "playwright test",
+    "vendor": "node scripts/vendor.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
