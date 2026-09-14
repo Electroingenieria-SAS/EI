@@ -22,7 +22,7 @@ class UI {
     if(this.modal && ['Tab'].includes(e.key)){this.trapFocus(e);return;}
     if(e.repeat)return;
     if(e.code==='Escape'){e.preventDefault();if(this.modal==='panel')this.closePanel();else if(!this.modal&&this.scene?.started)this.pause();}
-    if(this.modal==='dialog'&&(e.code==='KeyE'||e.code==='Enter'||e.code==='Space')){e.preventDefault();this.next();return;}
+    if(this.modal==='dialog'&&(e.code==='KeyE'||e.code==='Enter'||e.code==='Space')){e.preventDefault();e.stopPropagation();this.next();return;}
     if(this.battle && !this.battle.busy && /^[1-6]$/.test(e.key)){const b=$('battle-actions').children[Number(e.key)-1];if(b&&!b.disabled)b.click();}
     if(!this.modal&&this.scene?.started){if(e.code==='KeyM')this.map();if(e.code==='KeyI')this.journal();if(e.code==='KeyH')this.help();}
   });
