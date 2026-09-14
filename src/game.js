@@ -11,7 +11,7 @@ class ValleyScene extends Phaser.Scene {
   this.keys=this.input.keyboard.addKeys({up:'UP',down:'DOWN',left:'LEFT',right:'RIGHT',w:'W',a:'A',s:'S',d:'D',run:'SHIFT',interact:'E',attack:'J',roll:'SPACE'});
   this.input.keyboard.addCapture(['UP','DOWN','LEFT','RIGHT','SPACE']);
   this.input.keyboard.on('keydown',e=>{
-    if(e.defaultPrevented||ui.modal||!this.started||e.repeat)return;
+    if(ui.modal||!this.started||e.repeat)return;
     if(e.code==='KeyE')this.actionQueue.push('interact');
     if(e.code==='KeyJ')this.actionQueue.push('attack');
     if(e.code==='Space')this.actionQueue.push('roll');
