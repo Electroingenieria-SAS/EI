@@ -21,7 +21,13 @@ tests/browser/adventure.spec.cjs incluye:
 
 La ruta entre objetivos se acelera con teletransporte en esas pruebas. La conectividad real del mapa se comprueba en tests/core.test.cjs. La inspección de tacto real, audio y calidad artística requiere una revisión humana.
 
-Consulta GitHub Actions para el resultado de la ejecución de navegador. No se considera aprobada hasta que su ejecución termine correctamente.
+Resultado final: **12 pruebas de reglas y 3 pruebas en Chromium aprobadas**.
+
+Ejecución verificada: https://github.com/Electroingenieria-SAS/EI/actions/runs/34888041817
+
+Código verificado: a345bed4aeaefbf2f9167730ba81e2f8d41c3a00. El límite de la prueba completa se amplió a 180 segundos para permitir su ejecución con renderizado por software. Las actualizaciones DOM del HUD se limitaron a 10 por segundo para reducir trabajo redundante.
+
+Las capturas de escritorio, pantalla estrecha y santuario están en el artefacto lumina-browser-review de esa ejecución. No se realizó una inspección visual humana de esas capturas durante la entrega.
 
 ## Límites deliberados de v0.1
 
