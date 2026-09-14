@@ -51,6 +51,7 @@ function valley(state=C.initialState()){
   rect(tiles,10,4,3,27,'path');rect(tiles,5,26,20,3,'path');
   rect(tiles,11,22,31,3,'path');rect(tiles,36,8,3,17,'path');rect(tiles,18,9,21,3,'path');
   rect(tiles,9,24,10,7,'path');rect(tiles,33,8,11,6,'stone');
+  rect(tiles,26,0,3,36,'water');
   rect(tiles,26,22,3,3,'bridge');
   rect(tiles,3,5,5,4,'water');rect(tiles,4,6,5,3,'water');
   for(const h of VALLEY.houses){props.push({...h,kind:'house'});solids.push({id:h.id,x:h.x-49,y:h.y-48,w:98,h:48});}
