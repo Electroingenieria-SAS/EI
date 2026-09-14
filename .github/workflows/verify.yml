@@ -1,0 +1,33 @@
+name: Verify Lumina
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test game rules and map routes
+        run: npm test
+      - name: Install browser test tooling
+        run: npm install --ignore-scripts
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test complete adventure in Chromium
+        run: npm run test:browser
+      - name: Upload screenshots and browser report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumina-browser-review
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
