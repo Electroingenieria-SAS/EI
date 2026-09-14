@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#142a29"><meta name="description" content="Lúmina: Guardianes del Valle. Una aventura original de exploración, criaturas y santuarios.">
+<title>Lúmina · Guardianes del Valle</title>
+<link rel="icon" href="assets/emblem.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./"><img src="assets/emblem.svg" alt="">LÚMINA <span>GUARDIANES DEL VALLE</span></a><div class="top-actions"><span class="edition">PRIMERA TRAVESÍA · v0.1</span><button id="sound" title="Activar o desactivar sonido" aria-label="Activar sonido">Sonido: apagado</button><button id="fullscreen" title="Pantalla completa">⛶</button></div></header>
+<main id="app">
+<div id="game" aria-label="Mundo de Lúmina. Usa WASD para moverte y E para interactuar." tabindex="0"></div>
+<div id="hud" class="hidden">
+<div class="status glass"><div class="eyebrow">EXPLORADOR</div><div id="hearts"></div><div class="energy"><i id="stamina"></i></div></div>
+<div class="location glass"><span class="eyebrow">REGIÓN DE AURALIA</span><strong id="location">Aldea del Alba</strong><span id="location-sub">Un comienzo entre las hojas</span></div>
+<button id="mini" class="glass" aria-label="Abrir mapa"><canvas id="minimap" width="144" height="108"></canvas><span>MAPA · M</span></button>
+<div class="quest glass"><span class="eyebrow">TU TRAVESÍA</span><strong id="objective"></strong><span id="quest-detail"></span></div>
+<div class="companion glass"><img id="companion-image" alt=""><div><span class="eyebrow">COMPAÑERO</span><strong id="companion-name">Brote</strong><span id="collection-count">1 / 3 vínculos</span></div><button id="journal-button" aria-label="Abrir diario">I</button></div>
+<div id="hint" class="hidden"><kbd>E</kbd><span></span></div>
+</div>
+<div id="toast" role="status"></div>
+<section id="title" class="screen">
+<div class="title-card"><span class="eyebrow">UNA AVENTURA ORIGINAL</span><img class="crest" src="assets/emblem.svg" alt=""><h1>LÚMINA</h1><p class="subtitle">GUARDIANES DEL VALLE</p><div class="divider"></div><p class="intro">Al otro lado del bosque, un santuario espera.<br>Encuentra a sus criaturas. Despierta su luz.</p><button id="start" class="primary">Comenzar aventura <span>→</span></button><button id="continue" class="secondary hidden">Continuar travesía</button><button id="title-help" class="text-button">Cómo jugar</button><span class="title-note">EXPLORA · DESCUBRE · CONECTA</span></div>
+</section>
+<section id="dialog" class="dialog hidden" role="dialog" aria-modal="true" aria-labelledby="speaker"><img id="portrait" alt=""><div><span class="eyebrow" id="speaker"></span><p id="dialog-text"></p><button id="dialog-next" class="text-button">Continuar <kbd>E</kbd></button></div></section>
+<section id="panel" class="screen hidden" role="dialog" aria-modal="true" aria-labelledby="panel-title"><div class="panel-card"><button id="panel-close" class="close" aria-label="Cerrar">×</button><span class="eyebrow">CUADERNO DE VIAJE</span><h2 id="panel-title"></h2><div id="panel-body"></div></div></section>
+<section id="battle" class="screen hidden" role="dialog" aria-modal="true" aria-label="Encuentro con criatura"><div class="battle-card"><div class="battle-heading"><span class="eyebrow">EL VALLE TE ENCUENTRA</span><span id="battle-type"></span></div><div class="battle-stage"><div class="fighter ally"><div class="fighter-info"><strong id="ally-name"></strong><span id="ally-hp"></span><div class="hp"><i id="ally-bar"></i></div></div><img id="ally-art" alt="Tu compañero"></div><div class="fighter foe"><div class="fighter-info"><strong id="enemy-name"></strong><span id="enemy-hp"></span><div class="hp"><i id="enemy-bar"></i></div></div><img id="enemy-art" alt="Criatura encontrada"></div><div class="arena-grass"></div></div><p id="battle-log" role="status"></p><div id="battle-actions"></div></div></section>
+<div id="touch" class="hidden"><div class="dpad"><button data-key="up" aria-label="Arriba">↑</button><button data-key="left" aria-label="Izquierda">←</button><button data-key="down" aria-label="Abajo">↓</button><button data-key="right" aria-label="Derecha">→</button></div><div class="touch-actions"><button data-key="attack">Espada</button><button data-key="roll">Rodar</button><button data-key="interact">Hablar</button></div></div>
+<div id="loading">Preparando el valle…</div>
+</main>
+<footer><span><kbd>WASD</kbd> Mover <kbd>E</kbd> Hablar <kbd>J</kbd> Espada <kbd>Espacio</kbd> Rodar <kbd>M</kbd> Mapa <kbd>I</kbd> Diario</span><a href="https://github.com/Electroingenieria-SAS/EI/archive/refs/heads/main.zip">Descargar proyecto ZIP ↗</a></footer>
+<noscript>Este juego necesita JavaScript habilitado.</noscript>
+<script src="src/core.js"></script><script src="src/world.js"></script><script src="assets/atlas.js"></script><script src="src/audio.js"></script><script src="src/ui.js"></script>
+<script src="vendor/phaser.min.js" onerror="this.dataset.failed='true'"></script>
+<script>
+(function () {
+function start() { const s=document.createElement('script'); s.src='src/game.js'; s.onerror=fail; document.body.appendChild(s); }
+function fail() { document.getElementById('loading').textContent='No se pudo cargar el motor. Conéctate a internet y recarga, o ejecuta npm run vendor para instalarlo localmente.'; }
+if(window.Phaser) return start();
+const engine=document.createElement('script');engine.src='https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js';engine.onload=start;engine.onerror=fail;document.head.appendChild(engine);
+})();
+</script>
+</body></html>
